@@ -24,6 +24,7 @@ users:
 %{ endif ~}
 runcmd:
   - sudo mkdir -p /var/lib/rancher/k3s/agent/images/
+  - sudo mkdir -p /var/lib/rancher/k3s/server/manifests/
   - sudo curl -L -o /var/lib/rancher/k3s/agent/images/k3s-airgap-images-amd64.tar.zst "${k3s_images_url}"
   - sudo curl -L -o  /usr/local/bin/k3s "${k3s_bin_url}" && sudo chmod +x /usr/local/bin/k3s
   - sudo curl -L -o /etc/systemd/system/k3s.service "${k3s_service_url}"
