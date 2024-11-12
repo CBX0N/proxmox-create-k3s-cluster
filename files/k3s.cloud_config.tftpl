@@ -29,3 +29,4 @@ runcmd:
   - sudo tar --zstd --remove-files -xvf /var/lib/rancher/k3s/agent/images/k3s-airgap-images-amd64.tar.zst -C /var/lib/rancher/k3s/agent/images/
   - sudo sed -i "s/k3s server/k3s server --token ${cluster_token} ${service_run_command}/" /etc/systemd/system/k3s.service
   - sudo systemctl start k3s && sudo systemctl enable k3s
+  - sudo k3s kubectl apply -f "https://raw.githubusercontent.com/CBX0N/bootstrap-kubernetes-cluster/refs/tags/v1.0.0/manifest.yml"
