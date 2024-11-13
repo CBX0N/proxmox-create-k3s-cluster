@@ -33,7 +33,3 @@ locals {
     userdata_location  = "user=local:snippets/user_data_${node}.yaml"
   } }
 }
-
-output "kubeconfig" {
-  value = local.kubeconfig
-}
