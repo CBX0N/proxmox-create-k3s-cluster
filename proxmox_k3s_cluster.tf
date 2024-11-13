@@ -13,7 +13,7 @@ module "proxmox_vm" {
   proxmox_ssh_config = var.proxmox_ssh_config
 }
 
-resource "null_resource" "get_kubeconfig" {
+resource "null_resource" "grab_kubeconfig" {
   depends_on = [ module.proxmox_vm ]
   provisioner "local-exec" {
     command = local.scp_command[0]
