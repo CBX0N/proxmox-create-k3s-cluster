@@ -12,6 +12,8 @@ locals {
     service_run_command = conf.type == "primary" ? var.cluster_config.primary_service_run_command : (conf.type == "secondary" ? var.cluster_config.secondaries_service_run_command : "") })
   }
 
+  scp_command = "scp ${local.cloud_config[0].admin_user}@${var.proxmox_vm_config.ip_prefix}.${var.nodes[0].vmid}:/etc/rancher/k3s/k3s.yaml ${path.module}/k3s.yaml"
+
   vm_config = { for node, conf in var.nodes : node => {
     name               = node
     vmid               = conf.vmid
@@ -30,4 +32,8 @@ locals {
     cloudinit_location = var.proxmox_vm_config.cloudinit_location
     userdata_location  = "user=local:snippets/user_data_${node}.yaml"
   } }
+}
+
+output "name" {
+  value = local.scp_command
 }
