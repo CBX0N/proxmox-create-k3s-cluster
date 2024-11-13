@@ -13,9 +13,9 @@ module "proxmox_vm" {
   proxmox_ssh_config = var.proxmox_ssh_config
 }
 
-# resource "null_resource" "get_kubeconfig" {
-#   depends_on = [ module.proxmox_vm ]
-#   provisioner "local-exec" {
-#     command = "scp ${local.cloud_config[0].admin_user}@${var.proxmox_vm_config.ip_prefix}.${var.nodes[0].vmid}:/etc/rancher/k3s/k3s.yaml ${path.module}/k3s.yaml"
-#   }
-# }
+resource "null_resource" "get_kubeconfig" {
+  depends_on = [ module.proxmox_vm ]
+  provisioner "local-exec" {
+    command = local.scp_command[0]
+  }
+}
