@@ -34,6 +34,6 @@ locals {
   } }
 }
 
-output "name" {
+output "kubeconfig" {
   value = local.scp_command
 }
