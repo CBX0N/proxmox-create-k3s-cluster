@@ -35,5 +35,5 @@ locals {
 }
 
 output "kubeconfig" {
-  value = local.scp_command
+  value = data.local_file.kubeconfig
 }
