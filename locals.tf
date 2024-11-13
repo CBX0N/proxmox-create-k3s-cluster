@@ -13,7 +13,6 @@ locals {
   }
 
   scp_command = [ for node, conf in var.nodes : "scp ${var.cluster_config.admin_user}@${var.proxmox_vm_config.ip_prefix}.${conf.vmid}:/etc/rancher/k3s/k3s.yaml ${path.cwd}/${path.module}/k3s.yaml" ]
-  kubeconfig = yamldecode(data.local_file.kubeconfig.content)
 
   vm_config = { for node, conf in var.nodes : node => {
     name               = node
@@ -33,4 +32,8 @@ locals {
     cloudinit_location = var.proxmox_vm_config.cloudinit_location
     userdata_location  = "user=local:snippets/user_data_${node}.yaml"
   } }
+}
+
+output "kubeconfig" {
+  value = yamldecode(data.local_file.kubeconfig.content)
 }
