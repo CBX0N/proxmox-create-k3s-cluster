@@ -1,11 +1,11 @@
 output "kubeconfig_certificate_authority" {
-  value = local.kubeconfig.kubeconfig.clusters[0].cluster.certificate-authority-data
+  value = local.kubeconfig.clusters
 }
 
-output "kubeconfig_client_certificate" {
-  value = local.kubeconfig.kubeconfig.clusters[0].users[0].user.client-certificate-data
-}
+# output "kubeconfig_client_certificate" {
+#   value = local.kubeconfig.kubeconfig.clusters[0].users[0].user.client-certificate-data
+# }
 
-output "kubeconfig_client_key" {
-  value = local.kubeconfig.kubeconfig.clusters[0].users[0].user.client-key-data
-}
+# output "kubeconfig_client_key" {
+#   value = local.kubeconfig.kubeconfig.clusters[0].users[0].user.client-key-data
+# }
