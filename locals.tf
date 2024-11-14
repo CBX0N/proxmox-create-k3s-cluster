@@ -14,7 +14,7 @@ locals {
 
   primary_ip = [ for node, conf in var.nodes : conf.type == "primary" ? "${var.proxmox_vm_config.ip_prefix}.${conf.vmid}" : null]
 
-  scp_command = "scp ${var.cluster_config.admin_user}@${local.primary_ip}:/etc/rancher/k3s/k3s.yaml ${path.cwd}/${path.module}/k3s.yaml"
+  scp_command = "scp ${var.cluster_config.admin_user}@${local.primary_ip[0]}:/etc/rancher/k3s/k3s.yaml ${path.cwd}/${path.module}/k3s.yaml"
 
   vm_config = { for node, conf in var.nodes : node => {
     name               = node
