@@ -12,7 +12,9 @@ locals {
     service_run_command = conf.type == "primary" ? var.cluster_config.primary_service_run_command : (conf.type == "secondary" ? var.cluster_config.secondaries_service_run_command : "") })
   }
 
-  scp_command = [ for node, conf in var.nodes : "scp ${var.cluster_config.admin_user}@${var.proxmox_vm_config.ip_prefix}.${conf.vmid}:/etc/rancher/k3s/k3s.yaml ${path.cwd}/${path.module}/k3s.yaml" ]
+  primary_ip = [ for node, conf in var.nodes : node.type == "primary" ? "${var.proxmox_vm_config.ip_prefix}.${conf.vmid}" : null]
+
+  scp_command = "scp ${var.cluster_config.admin_user}@${local.primary_ip}:/etc/rancher/k3s/k3s.yaml ${path.cwd}/${path.module}/k3s.yaml"
 
   vm_config = { for node, conf in var.nodes : node => {
     name               = node

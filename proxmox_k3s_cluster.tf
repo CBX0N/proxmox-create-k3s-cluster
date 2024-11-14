@@ -17,6 +17,6 @@ resource "null_resource" "grab_kubeconfig" {
   depends_on = [ module.proxmox_vm ]
   triggers = {always_run = "${timestamp()}"}
   provisioner "local-exec" {
-    command = local.scp_command[0]
+    command = local.scp_command
   }
 }
