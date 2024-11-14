@@ -1,3 +1,3 @@
 output "kubeconfig" {
-  value = yamldecode(data.local_file.kubeconfig.content)
+  value = data.local_file.kubeconfig.content
 }
