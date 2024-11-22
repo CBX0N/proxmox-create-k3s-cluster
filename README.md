@@ -5,6 +5,10 @@
 
 The following providers are used by this module:
 
+- <a name="provider_local"></a> [local](#provider\_local)
+
+- <a name="provider_null"></a> [null](#provider\_null)
+
 - <a name="provider_random"></a> [random](#provider\_random)
 
 ## Modules
@@ -21,7 +25,9 @@ Version: v1.0.0
 
 The following resources are used by this module:
 
+- [null_resource.grab_kubeconfig](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) (resource)
 - [random_password.cluster_token](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) (resource)
+- [local_file.kubeconfig](https://registry.terraform.io/providers/hashicorp/local/latest/docs/data-sources/file) (data source)
 
 ## Required Inputs
 
@@ -99,4 +105,12 @@ object({
     cloudinit_location = optional(string, "local-lvm")
   })
 ```
+
+## Outputs
+
+The following outputs are exported:
+
+### <a name="output_kubeconfig"></a> [kubeconfig](#output\_kubeconfig)
+
+Description: n/a
 <!-- END_TF_DOCS -->
