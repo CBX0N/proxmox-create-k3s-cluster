@@ -12,7 +12,7 @@ locals {
     service_run_command = conf.type == "primary" ? var.cluster_config.primary_service_run_command : (conf.type == "secondary" ? var.cluster_config.secondaries_service_run_command : "") })
   }
 
-  primary_ip = [ for node, conf in var.nodes : conf.type == "primary" ? "${var.proxmox_vm_config.ip_prefix}.${conf.vmid}" : null]
+  primary_ip = [for node, conf in var.nodes : conf.type == "primary" ? "${var.proxmox_vm_config.ip_prefix}.${conf.vmid}" : null]
 
   scp_command = "while ! scp ${var.cluster_config.admin_user}@${local.primary_ip[0]}:/etc/rancher/k3s/k3s.yaml ${path.cwd}/${path.module}/k3s.yaml; do echo \"Retrying in 10 seconds...\"; sleep 10; done"
 
