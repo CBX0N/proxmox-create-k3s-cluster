@@ -9,7 +9,7 @@ module "master_nodes" {
   source             = "github.com/CBX0N/proxmox-cloudinit-vm-module?ref=v1.0.1"
   count              = var.cluster_config.nodes.masters
   vmid               = var.cluster_config.starting_vmid + count.index
-  vm_name            = "${var.master_node_vm_config.vmname_prefix}${format("m%02s", count.index + 1)}"
+  vm_name            = "${var.cluster_config.vmname_prefix}${format("m%02s", count.index + 1)}"
   ip_config          = "ip=${var.master_node_vm_config.ip_prefix}.${var.cluster_config.starting_vmid + count.index}/${var.master_node_vm_config.subnet_size},gw=${var.master_node_vm_config.ip_gateway}"
   userdata_location  = "user=local:snippets/user_data_${var.cluster_config.vmname_prefix}${format("m%02s", count.index + 1)}.yaml"
   vm_config          = var.master_node_vm_config
