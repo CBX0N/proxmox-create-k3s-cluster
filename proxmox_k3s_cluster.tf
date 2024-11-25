@@ -15,6 +15,7 @@ module "master_nodes" {
   vm_config          = var.master_node_vm_config
   proxmox_ssh_config = var.proxmox_ssh_config
   userdata_content = templatefile("${path.module}/files/k3s.cloud_config.tftpl", {
+    node_type           = "server"
     hostname            = "${var.cluster_config.vmname_prefix}${format("m%02s", count.index + 1)}",
     cluster_token       = "${random_password.cluster_token.result}",
     admin_user          = var.cluster_config.admin_user,
@@ -39,6 +40,7 @@ module "agent_nodes" {
   vm_config          = var.agent_node_vm_config
   proxmox_ssh_config = var.proxmox_ssh_config
   userdata_content = templatefile("${path.module}/files/k3s.cloud_config.tftpl", {
+    node_type           = "agent"
     hostname            = "${var.cluster_config.vmname_prefix}${format("a%02s", count.index + 1)}",
     cluster_token       = "${random_password.cluster_token.result}",
     admin_user          = var.cluster_config.admin_user,
