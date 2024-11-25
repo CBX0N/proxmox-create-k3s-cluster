@@ -26,7 +26,6 @@ variable "cluster_config" {
     })
   })
 }
-}
 
 variable "master_node_vm_config" {
   type = object({
