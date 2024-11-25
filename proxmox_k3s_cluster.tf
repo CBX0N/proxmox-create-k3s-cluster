@@ -53,7 +53,7 @@ module "agent_nodes" {
 }
 
 resource "null_resource" "grab_kubeconfig" {
-  depends_on = [module.proxmox_vm]
+  depends_on = [module.master_nodes]
   triggers   = { always_run = "${timestamp()}" }
   provisioner "local-exec" {
     command = local.scp_command
