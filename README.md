@@ -19,13 +19,13 @@ The following Modules are called:
 
 Source: github.com/CBX0N/proxmox-cloudinit-vm-module
 
-Version: v1.0.0
+Version: v1.0.1
 
 ### <a name="module_master_nodes"></a> [master\_nodes](#module\_master\_nodes)
 
 Source: github.com/CBX0N/proxmox-cloudinit-vm-module
 
-Version: v1.0.0
+Version: v1.0.1
 
 ## Resources
 
@@ -75,6 +75,7 @@ Type:
 object({
     primary_service_run_command     = string
     secondaries_service_run_command = string
+    agents_service_run_command      = string
     admin_user                      = string
     admin_password                  = optional(string, "")
     ssh_keys                        = optional(list(string), [])
