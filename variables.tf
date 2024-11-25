@@ -17,10 +17,16 @@ variable "cluster_config" {
     k3s_images_url                  = string
     k3s_bin_url                     = string
     k3s_service_url                 = string
+    vmname_prefix                   = string
+    starting_vmid                   = number
+    nodes = object({
+      masters = number
+      agents  = number
+    })
   })
 }
 
-variable "proxmox_vm_config" {
+variable "master_node_vm_config" {
   type = object({
     memory             = optional(number, 4096)
     balloon            = optional(number, 4096)
@@ -40,9 +46,22 @@ variable "proxmox_vm_config" {
   })
 }
 
-variable "nodes" {
-  type = map(object({
-    type = string
-    vmid = number
-  }))
+variable "agent_node_vm_config" {
+  type = object({
+    memory             = optional(number, 1024)
+    balloon            = optional(number, 512)
+    cores              = optional(number, 1)
+    sockets            = optional(number, 1)
+    disk_size_gb       = optional(number, 40)
+    os_type            = optional(string, "cloud-init")
+    clone              = string
+    ip_gateway         = string
+    ip_prefix          = string
+    subnet_size        = optional(number, 24)
+    target_node        = optional(string, "pve")
+    nic                = optional(string, "virtio")
+    bridge             = optional(string, "vmbr0")
+    disk_location      = string
+    cloudinit_location = optional(string, "local-lvm")
+  })
 }
