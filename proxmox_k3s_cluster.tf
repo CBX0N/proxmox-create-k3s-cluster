@@ -34,7 +34,7 @@ module "agent_nodes" {
   count              = var.cluster_config.nodes.agents
   vmid               = var.cluster_config.starting_vmid + var.cluster_config.nodes.masters + count.index
   vm_name            = "${var.cluster_config.vmname_prefix}${format("a%02s", count.index + 1)}"
-  ip_config          = "ip=${var.agent_node_vm_config.ip_prefix}.${var.cluster_config.starting_vmid + + var.cluster_config.nodes.masters + count.index}/${var.agent_node_vm_config.subnet_size},gw=${var.agent_node_vm_config.ip_gateway}"
+  ip_config          = "ip=${var.agent_node_vm_config.ip_prefix}.${var.cluster_config.starting_vmid + var.cluster_config.nodes.masters + count.index}/${var.agent_node_vm_config.subnet_size},gw=${var.agent_node_vm_config.ip_gateway}"
   userdata_location  = "user=local:snippets/user_data_${var.cluster_config.vmname_prefix}${format("a%02s", count.index + 1)}.yaml"
   vm_config          = var.agent_node_vm_config
   proxmox_ssh_config = var.proxmox_ssh_config
