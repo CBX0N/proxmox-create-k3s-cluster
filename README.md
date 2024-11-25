@@ -19,13 +19,13 @@ The following Modules are called:
 
 Source: github.com/CBX0N/proxmox-cloudinit-vm-module
 
-Version: v1.0.1
+Version: v1.0.2
 
 ### <a name="module_master_nodes"></a> [master\_nodes](#module\_master\_nodes)
 
 Source: github.com/CBX0N/proxmox-cloudinit-vm-module
 
-Version: v1.0.1
+Version: v1.0.2
 
 ## Resources
 

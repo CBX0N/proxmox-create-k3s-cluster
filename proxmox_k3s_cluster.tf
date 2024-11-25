@@ -6,7 +6,7 @@ resource "random_password" "cluster_token" {
 
 module "master_nodes" {
   depends_on         = [random_password.cluster_token]
-  source             = "github.com/CBX0N/proxmox-cloudinit-vm-module?ref=v1.0.1"
+  source             = "github.com/CBX0N/proxmox-cloudinit-vm-module?ref=v1.0.2"
   count              = var.cluster_config.nodes.masters
   vmid               = var.cluster_config.starting_vmid + count.index
   vm_name            = "${var.cluster_config.vmname_prefix}${format("m%02s", count.index + 1)}"
@@ -30,7 +30,7 @@ module "master_nodes" {
 
 module "agent_nodes" {
   depends_on         = [module.master_nodes]
-  source             = "github.com/CBX0N/proxmox-cloudinit-vm-module?ref=v1.0.1"
+  source             = "github.com/CBX0N/proxmox-cloudinit-vm-module?ref=v1.0.2"
   count              = var.cluster_config.nodes.agents
   vmid               = var.cluster_config.starting_vmid + var.cluster_config.nodes.masters + count.index
   vm_name            = "${var.cluster_config.vmname_prefix}${format("a%02s", count.index + 1)}"
