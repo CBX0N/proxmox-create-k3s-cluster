@@ -48,7 +48,7 @@ module "agent_nodes" {
     k3s_images_url      = var.cluster_config.k3s_images_url,
     k3s_bin_url         = var.cluster_config.k3s_bin_url,
     k3s_service_url     = var.cluster_config.k3s_service_url,
-    service_run_command = var.cluster_config.agent_service_run_command
+    service_run_command = var.cluster_config.agents_service_run_command
   })
 }
 

@@ -10,6 +10,7 @@ variable "cluster_config" {
   type = object({
     primary_service_run_command     = string
     secondaries_service_run_command = string
+    agents_service_run_command      = string
     admin_user                      = string
     admin_password                  = optional(string, "")
     ssh_keys                        = optional(list(string), [])
@@ -24,6 +25,7 @@ variable "cluster_config" {
       agents  = number
     })
   })
+}
 }
 
 variable "master_node_vm_config" {
